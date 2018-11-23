@@ -1,0 +1,140 @@
+$myYellowColor: #fec400;
+$myLightBlackColor: rgb(34, 34, 34);
+.navbar {
+  background: $myLightBlackColor;
+}
+
+.nav-item::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: $myYellowColor;
+  transition: 0.2s;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+.navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show > .nav-link, .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+  color: $myYellowColor;
+}
+
+.nav-link {
+  padding: 15px 5px;
+  transition: 0.2s;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #212529;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  background: $myYellowColor;
+}
+
+.myFooter {
+  background-color: $myLightBlackColor;
+  color: rgba(255, 255, 255, .5);
+  i {
+    font-size: 50px;
+  }
+  .socialButtonsUL {
+    margin: auto;
+  }
+  .aButton {
+    position: relative;
+    z-index: 1;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    margin: 10px;
+    padding: 0;
+    cursor: pointer;
+  }
+}
+
+.contentDIV {
+  text-align: center;
+
+  .home {
+    margin: 30px;
+    display: inline-block;
+    .homeCenterIm {
+      position: relative;
+      text-transform: uppercase;
+      .saleInfo {
+        text-align: left;
+        padding: 40px;
+        height: 100%;
+        width: 35%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 35px;
+        background-color: rgba(255, 255, 255, 0.8);
+        vertical-align: middle;
+        .header {
+          //font-weight: lighter;
+          font-size: 70px;
+        }
+        .shopNowButton {
+          width: 170px;
+          button {
+            text-transform: uppercase;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.shopping {
+  width: 250px;
+  padding: 30px;
+  .leftbar {
+    text-align: left;
+    .header {
+      font-size: 20px;
+      color: black;
+      text-transform: uppercase;
+    }
+    .smallHeader {
+      font-size: 16px;
+      color: black;
+      text-transform: uppercase;
+    }
+    ul {
+      padding: 0;
+      li {
+        list-style-type: none;
+        a {
+          font-size: 16px;
+          color: lighten($myLightBlackColor, 20);
+          text-decoration: none;
+          &:hover {
+            color: $myYellowColor;
+          }
+        }
+        .activePoint {
+          font-weight: bolder;
+          color: black;
+        }
+      }
+    }
+    .leftbar #filter-bar .noUi-handle {
+      width: 13px;
+      height: 13px;
+      left: -6px;
+      top: -5px;
+      border: none;
+      border-radius: 50%;
+      background: #999999;
+      cursor: pointer;
+      box-shadow: none;
+      outline: none;
+    }
+  }
+}
