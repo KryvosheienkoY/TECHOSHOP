@@ -14,35 +14,57 @@
 <body>
 <!--Header-->
 <header class="myHeader">
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <a href="#" class="navbar-brand"><img src="../src/img/myLOGO.png"> </a>
-        <button class="navbar-toggler" type="button" data-target="#navigation">
+    <!--<nav class="navbar navbar-expand-lg navbar-dark">-->
+        <!--<a href="#" class="navbar-brand"><img src="../src/img/myLOGO.png"> </a>-->
+        <!--<button class="navbar-toggler" type="button" data-target="#navigation">-->
+            <!--<span class="navbar-toggler-icon"></span>-->
+        <!--</button>-->
+        <!--<div class="collapse navbar-collapse">-->
+            <!--<ul class="navbar-nav ml-auto">-->
+                <!--<li class="nav-item active">-->
+                    <!--<a href="#" class="nav-link">Home</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item">-->
+                    <!--<a href="#" class="nav-link">Product</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item dropdown">-->
+                    <!--<a class="nav-link dropdown-toggle" href="#" id="navdrop" role="button" data-toggle="dropdown"-->
+                       <!--data-hover="dropdown">Services</a>-->
+                    <!--<div class="dropdown-menu" aria-labelledby="navdrop">-->
+                        <!--<a href="#" class="dropdown-item">Service1</a>-->
+                        <!--<a href="#" class="dropdown-item">Service2</a>-->
+                        <!--<a href="#" class="dropdown-item">Service3</a>-->
+                    <!--</div>-->
+
+                <!--</li>-->
+                <!--<li class="nav-item">-->
+                    <!--<a href="#" class="nav-link">Contact Us</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item">-->
+                    <!--<a href="#" class="nav-link"><i class="fas fa-shopping-cart"> </i> Cart (<span-->
+                            <!--id="cartCounter">0</span>)</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</nav>-->
+
+    <nav class="navbar navbar-expand-sm navbar-dark ">
+        <a class="navbar-brand" href="#"><img src="../src/img/myLOGO.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse">
+
+        <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a href="#" class="nav-link">Home</a>
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Product</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navdrop" role="button" data-toggle="dropdown"
-                       data-hover="dropdown">Services</a>
-                    <div class="dropdown-menu" aria-labelledby="navdrop">
-                        <a href="#" class="dropdown-item">Service1</a>
-                        <a href="#" class="dropdown-item">Service2</a>
-                        <a href="#" class="dropdown-item">Service3</a>
-                    </div>
-
+                    <a class="nav-link" href="#">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Contact Us</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fas fa-shopping-cart"> </i> Cart (<span
-                            id="cartCounter">0</span>)</a>
+                <a href="#" class="nav-link"><i class="fas fa-shopping-cart"> </i> Cart (<span
+                id="cartCounter">0</span>)</a>
                 </li>
             </ul>
         </div>
@@ -67,128 +89,15 @@
     <div class="shopping">
         <!--<div class="bgwhite p-t-55 p-b-65 leftFilterCol">-->
         <!--<div class="container">-->
-        <div class="leftbar p-r-20 p-r-0-sm">
+        <div class="leftbar">
             <!--  -->
-            <p class="m-text14 p-b-7 header">
-                Categories
-            </p>
+            <p class=" header">Categories</p>
 
-            <ul class="">
-                <li class="">
-                    <a href="#" class="s-text13 activePoint">
-                        All
-                    </a>
-                </li>
-
-                <li class="">
-                    <a href="#" class="s-text13">
-                        Women
-                    </a>
-                </li>
-
-                <li class="">
-                    <a href="#" class="s-text13">
-                        Men
-                    </a>
-                </li>
-
-                <li class="">
-                    <a href="#" class="s-text13">
-                        Kids
-                    </a>
-                </li>
-
-                <li class="">
-                    <a href="#" class="s-text13">
-                        Accesories
-                    </a>
-                </li>
-            </ul>
-            <div class="filters">
-                <!--  -->
-                <p class="  header">
-                    Filters
-                </p>
-
-                <div class="filter-price   ">
-                    <div class="  smallHeader">
-                        Price
-                    </div>
-                    <div id="slider">
-                    </div>
-                    <!--script for slider-->
-                    <script src="nouislider.min.js"></script>
-                    <!--script for slider-->
-                    <div id="filter-bar" class="noUi-target noUi-ltr noUi-horizontal">
-                        <div class="noUi-base">
-                            <div class="noUi-origin" style="left: 0">
-                                <div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0"
-                                     role="slider"
-                                     aria-orientation="horizontal" style="z-index: 5;" aria-valuemin="0.0"
-                                     aria-valuemax="100.0" aria-valuenow="0.0" aria-valuetext="50.00"></div>
-                            </div>
-                            <div class="noUi-connect"></div>
-                            <div class="noUi-origin" style="left: 100%;">
-                                <div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0"
-                                     role="slider"
-                                     aria-orientation="horizontal" style="z-index: 4;" aria-valuemin="0.0"
-                                     aria-valuemax="100.0" aria-valuenow="100.0" aria-valuetext="200.00"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="  ">
-                    Range: $<span id="value-lower">610</span> - $<span id="value-upper">980</span>
-                </div>
-                <div class="filter-color  ">
-                    <div class="  smallHeader">
-                        Color
-                    </div>
-
-                    <ul class="flex-w">
-                        <li class="">
-                            <input class="checkbox-color-filter" id="color-filter1" type="checkbox"
-                                   name="color-filter1">
-                            <label class="color-filter color-filter1" for="color-filter1"></label>
-                        </li>
-
-                        <li class="">
-                            <input class="checkbox-color-filter" id="color-filter2" type="checkbox"
-                                   name="color-filter2">
-                            <label class="color-filter color-filter2" for="color-filter2"></label>
-                        </li>
-
-                        <li class="">
-                            <input class="checkbox-color-filter" id="color-filter3" type="checkbox"
-                                   name="color-filter3">
-                            <label class="color-filter color-filter3" for="color-filter3"></label>
-                        </li>
-
-                        <li class="">
-                            <input class="checkbox-color-filter" id="color-filter4" type="checkbox"
-                                   name="color-filter4">
-                            <label class="color-filter color-filter4" for="color-filter4"></label>
-                        </li>
-
-                        <li class="">
-                            <input class="checkbox-color-filter" id="color-filter5" type="checkbox"
-                                   name="color-filter5">
-                            <label class="color-filter color-filter5" for="color-filter5"></label>
-                        </li>
-
-                        <li class="">
-                            <input class="checkbox-color-filter" id="color-filter6" type="checkbox"
-                                   name="color-filter6">
-                            <label class="color-filter color-filter6" for="color-filter6"></label>
-                        </li>
-
-                        <li class="">
-                            <input class="checkbox-color-filter" id="color-filter7" type="checkbox"
-                                   name="color-filter7">
-                            <label class="color-filter color-filter7" for="color-filter7"></label>
-                        </li>
-                    </ul>
-                </div>
+            <ul class="categoryList" id="categoryListID"></ul>
+        </div>
+        <div class="productsRightPart">
+            <div class="container">
+                <div class="row product-grid"></div>
             </div>
         </div>
     </div>
@@ -229,17 +138,17 @@
     <!-- Copyright -->
 </footer>
 <!-- Footer -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"-->
+<!--integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"-->
+<!--crossorigin="anonymous"></script>-->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>-->
 <script src="./js/main.js"></script>
 </body>
 </html>

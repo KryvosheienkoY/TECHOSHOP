@@ -45,6 +45,7 @@
 .contentDIV {
   text-align: center; }
   .contentDIV .home {
+    width: 100%;
     margin: 30px;
     display: inline-block; }
     .contentDIV .home .homeCenterIm {
@@ -70,9 +71,11 @@
             width: 100%; }
 
 .shopping {
-  width: 250px;
-  padding: 30px; }
+  width: 100%;
+  display: inline-flex; }
   .shopping .leftbar {
+    width: 200px;
+    padding: 30px;
     text-align: left; }
     .shopping .leftbar .header {
       font-size: 20px;
@@ -91,20 +94,50 @@
           color: #555555;
           text-decoration: none; }
           .shopping .leftbar ul li a:hover {
-            color: #fec400; }
+            color: #fec400;
+            cursor: pointer; }
         .shopping .leftbar ul li .activePoint {
           font-weight: bolder;
           color: black; }
-    .shopping .leftbar .leftbar #filter-bar .noUi-handle {
-      width: 13px;
-      height: 13px;
-      left: -6px;
-      top: -5px;
-      border: none;
-      border-radius: 50%;
-      background: #999999;
-      cursor: pointer;
-      box-shadow: none;
-      outline: none; }
+  .shopping .productsRightPart {
+    width: calc(99% - 200px);
+    padding-top: 30px;
+    padding-bottom: 30px; }
+    .shopping .productsRightPart .card {
+      align-items: center;
+      justify-content: center; }
+      .shopping .productsRightPart .card:hover {
+        z-index: 10;
+        background-color: rgba(255, 251, 240, 0.1);
+        box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.4);
+        border: 1px solid #fec400; }
+      .shopping .productsRightPart .card .product-image {
+        max-height: 200px;
+        object-fit: contain;
+        margin: 5px; }
+      .shopping .productsRightPart .card .product-title {
+        margin-top: auto; }
+      .shopping .productsRightPart .card .product-price {
+        background-color: #fef2b8;
+        color: #222222;
+        margin: auto 3px 3px;
+        padding: 5px;
+        border-radius: 1px; }
+      .shopping .productsRightPart .card .old_price {
+        text-decoration: line-through #d21700;
+        margin: 0;
+        background-color: transparent; }
+      .shopping .productsRightPart .card .special_price {
+        background-color: #fef2b8;
+        color: #d21700; }
+      .shopping .productsRightPart .card .product-buy-button {
+        width: 100%;
+        height: 35px;
+        margin: auto 7px 5px; }
+    .shopping .productsRightPart a {
+      cursor: pointer; }
+      .shopping .productsRightPart a:hover {
+        color: #fec400;
+        text-decoration: underline; }
 
 /*# sourceMappingURL=main.css.map */
