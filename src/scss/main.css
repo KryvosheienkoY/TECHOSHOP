@@ -75,7 +75,7 @@
   display: inline-flex; }
   .shopping .leftbar {
     width: 200px;
-    padding: 30px;
+    padding: 20px;
     text-align: left; }
     .shopping .leftbar .header {
       font-size: 20px;
@@ -96,16 +96,20 @@
           .shopping .leftbar ul li a:hover {
             color: #fec400;
             cursor: pointer; }
-        .shopping .leftbar ul li .activePoint {
-          font-weight: bolder;
-          color: black; }
+      .shopping .leftbar ul .activePoint {
+        font-weight: bolder;
+        color: black; }
   .shopping .productsRightPart {
     width: calc(99% - 200px);
     padding-top: 30px;
     padding-bottom: 30px; }
+    .shopping .productsRightPart .row {
+      justify-content: center; }
     .shopping .productsRightPart .card {
       align-items: center;
-      justify-content: center; }
+      justify-content: center;
+      min-width: 165px;
+      margin: 1px auto; }
       .shopping .productsRightPart .card:hover {
         z-index: 10;
         background-color: rgba(255, 251, 240, 0.1);

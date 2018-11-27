@@ -98,7 +98,7 @@ $leftBarWidth: 200px;
   display: inline-flex;
   .leftbar {
     width: $leftBarWidth;
-    padding: 30px;
+    padding: 20px;
     text-align: left;
     .header {
       font-size: 20px;
@@ -123,10 +123,10 @@ $leftBarWidth: 200px;
             cursor: pointer;
           }
         }
-        .activePoint {
-          font-weight: bolder;
-          color: black;
-        }
+      }
+      .activePoint {
+        font-weight: bolder;
+        color: black;
       }
     }
   }
@@ -134,9 +134,16 @@ $leftBarWidth: 200px;
     width: calc(99% - 200px);
     padding-top: 30px;
     padding-bottom: 30px;
+
+    .row {
+      justify-content: center;
+    }
     .card {
       align-items: center;
       justify-content: center;
+      min-width: 165px;
+      margin: 1px auto;
+
       &:hover {
         z-index: 10;
         background-color: rgba(255, 251, 240, 0.1);
