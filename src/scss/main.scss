@@ -60,12 +60,15 @@ $leftBarWidth: 200px;
   text-align: center;
 
   .home {
-    width: 100%;
     margin: 30px;
     display: inline-block;
     .homeCenterIm {
       position: relative;
       text-transform: uppercase;
+      img{
+        width: 100%;
+        min-width: 730px;
+      }
       .saleInfo {
         text-align: left;
         padding: 40px;
@@ -135,14 +138,17 @@ $leftBarWidth: 200px;
     padding-top: 30px;
     padding-bottom: 30px;
 
-    .row {
-      justify-content: center;
-    }
+    //.row {
+    //  justify-content: center;
+    //}
     .card {
       align-items: center;
       justify-content: center;
       min-width: 165px;
-      margin: 1px auto;
+      margin-top: 1px;
+      //margin-right: auto;
+      //margin-left: auto;
+      margin-bottom: 1px;
 
       &:hover {
         z-index: 10;

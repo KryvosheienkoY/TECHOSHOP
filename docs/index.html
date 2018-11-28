@@ -24,7 +24,7 @@
 <!--Header-->
 <header class="myHeader">
     <nav class="navbar navbar-expand-sm navbar-dark ">
-        <a class="navbar-brand" href="#"><img src="../src/img/myLOGO.png"></a>
+        <span class="navbar-brand" href="#"><img src="../src/img/myLOGO.png"></span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03"
                 aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,10 +32,10 @@
 
         <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item active" id="menuHomeID">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="menuShoppingID">
                     <a class="nav-link" href="#">Products</a>
                 </li>
                 <li class="nav-item">
@@ -49,36 +49,7 @@
 <!--Header-->
 
 <!--Content-->
-<div class="contentDIV">
-    <!--<div class="home">-->
-    <!--<div class="homeCenterIm">-->
-    <!--<img src="img/electronics.jpg">-->
-    <!--<div class="saleInfo">-->
-    <!--<p class="header">price drop!</p>-->
-    <!--<p>Up to 40% off!</p>-->
-    <!--<span class="shopNowButton">-->
-    <!--<button type="button" class="btn btn-light">Shop now</button>-->
-    <!--</span>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <div class="shopping">
-        <!--<div class="bgwhite p-t-55 p-b-65 leftFilterCol">-->
-        <!--<div class="container">-->
-        <div class="leftbar">
-            <!-- Categories -->
-            <p class=" header">Categories</p>
-
-            <ul class="categoryList" id="categoryListID"></ul>
-        </div>
-        <div class="productsRightPart">
-            <div class="container">
-                <div class="row product-grid"></div>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="contentDIV" id="contentDIVID"></div>
 <!--Content-->
 
 <!-- Footer -->
