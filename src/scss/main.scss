@@ -180,7 +180,8 @@ $leftBarWidth: 200px;
     }
   }
 }
-.product-title{
+
+.product-title {
   font-weight: bolder;
 }
 
@@ -191,11 +192,13 @@ $leftBarWidth: 200px;
   padding: 5px;
   border-radius: 1px;
 }
+
 .old_price {
   text-decoration: line-through #d21700;
   margin: 0;
   background-color: transparent;
 }
+
 .special_price {
   //background-color: #fef2b8;
   color: #d21700;
@@ -226,4 +229,26 @@ $leftBarWidth: 200px;
     }
   }
 
+}
+#productCartGridID{
+  margin: 20px;
+  width: 80%;
+}
+
+.productCartInfo {
+  text-align: left;
+  .imWrap {
+    width: 80px;
+    height: 80px;
+    .product-image {
+      max-width: 100%;
+      height: auto;
+      margin: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+.totalRow{
+  text-align: right;
 }

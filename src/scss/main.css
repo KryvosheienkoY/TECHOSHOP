@@ -167,4 +167,23 @@
   .productPage .productInfoPage .product-description {
     margin-top: 20px; }
 
+#productCartGridID {
+  margin: 20px;
+  width: 80%; }
+
+.productCartInfo {
+  text-align: left; }
+  .productCartInfo .imWrap {
+    width: 80px;
+    height: 80px; }
+    .productCartInfo .imWrap .product-image {
+      max-width: 100%;
+      height: auto;
+      margin: 0;
+      display: inline-block;
+      vertical-align: middle; }
+
+.totalRow {
+  text-align: right; }
+
 /*# sourceMappingURL=main.css.map */
