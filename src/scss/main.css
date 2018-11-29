@@ -122,19 +122,6 @@
         margin: 5px; }
       .shopping .productsRightPart .card .product-title {
         margin-top: auto; }
-      .shopping .productsRightPart .card .product-price {
-        background-color: #fef2b8;
-        color: #222222;
-        margin: auto 3px 3px;
-        padding: 5px;
-        border-radius: 1px; }
-      .shopping .productsRightPart .card .old_price {
-        text-decoration: line-through #d21700;
-        margin: 0;
-        background-color: transparent; }
-      .shopping .productsRightPart .card .special_price {
-        background-color: #fef2b8;
-        color: #d21700; }
       .shopping .productsRightPart .card .product-buy-button {
         width: 100%;
         height: 35px;
@@ -144,5 +131,40 @@
       .shopping .productsRightPart a:hover {
         color: #fec400;
         text-decoration: underline; }
+
+.product-title {
+  font-weight: bolder; }
+
+.product-price {
+  color: #222222;
+  margin: auto 3px 3px;
+  padding: 5px;
+  border-radius: 1px; }
+
+.old_price {
+  text-decoration: line-through #d21700;
+  margin: 0;
+  background-color: transparent; }
+
+.special_price {
+  color: #d21700; }
+
+.productPage .backToShopping {
+  height: 70px; }
+  .productPage .backToShopping .backButton {
+    float: left;
+    font-size: 50px;
+    margin: 20px;
+    cursor: pointer; }
+.productPage .productInfoPage {
+  text-align: left;
+  min-height: 500px; }
+  .productPage .productInfoPage img {
+    max-width: 50%;
+    float: left;
+    margin: -10px 60px 60px;
+    max-height: 400px; }
+  .productPage .productInfoPage .product-description {
+    margin-top: 20px; }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,13 +1,15 @@
 import $ from "jquery";
+import generateProductPage from './ProductPageInfoHTML';
+import {addToCart} from './CartContentHTML';
 
-let currentCategory = 0;
+let currentCategory = 1;
 
-function generateShoppingContent(){
-    generateHTML();
+function generateShoppingContent() {
+    generateShoppingHTML();
     addCategoriesHTML();
 }
 
-function generateHTML() {
+function generateShoppingHTML() {
 
     let contentDiv = $('#contentDIVID');
     let items = $(`
@@ -15,7 +17,10 @@ function generateHTML() {
                 <div class="leftbar">
                     <!-- Categories -->
                     <p class=" header">Categories</p>
-                    <ul class="categoryList" id="categoryListID"></ul>
+                    <ul class="categoryList" id="categoryListID">
+                    <li class="category" id="1" about="All shop products">
+                    <a>All</a></li>
+                    </ul>
                 </div>
              <div class="productsRightPart">
                 <div class="container">
@@ -25,36 +30,30 @@ function generateHTML() {
             </div>`);
     contentDiv.empty();
     contentDiv.append(items);
+    $('#1').on("click",changeActiveCategory);
 }
 
+
 function changeActiveCategory() {
+    let urlString;
     let k = currentCategory - 1;
-    $("ul.categoryList li").eq(k).removeClass("activePoint");
+    let point=$("ul.categoryList li");
+    point.eq(k).removeClass("activePoint");
     let num = $(this).attr("id");
     if (num === undefined)
         num = 1;
     currentCategory = num;
     k = currentCategory - 1;
-    $("ul.categoryList li").eq(k).addClass("activePoint");
+    point.eq(k).addClass("activePoint");
     $('.product-grid').empty();
-    addProductsGrid(currentCategory);
-}
-
-function addProductsGrid(currentCategory) {
-    let urlString = String("https://nit.tron.net.ua/api/product/list/category/" + currentCategory);
-    jQuery.ajax({
-        url: urlString,
-        method: 'get',
-        dataType: 'json',
-        success: function (json) {
-            console.log("Loaded products of category " + currentCategory + " via AJAX!");
-            json.forEach(product => $('.product-grid').append(_makeHtmlProducts(product)));
-            console.log('Products are added to grid');
-        },
-        error: function (xhr) {
-            alert("An error occured: " + xhr.status + " " + xhr.statusText);
-        },
-    });
+    //not change ==
+    if(currentCategory==1){
+        urlString = String("https://nit.tron.net.ua/api/product/list");
+    }
+    else{
+        urlString = String("https://nit.tron.net.ua/api/product/list/category/"+currentCategory);
+    }
+    addProductsGrid(urlString);
 }
 
 function addCategoriesHTML() {
@@ -85,6 +84,7 @@ let _makeHtmlCategories = ({
     $category.on("click", changeActiveCategory);
     return $category;
 };
+
 let _makeHtmlProducts = ({
                              id,
                              name,
@@ -95,7 +95,9 @@ let _makeHtmlProducts = ({
                          }) => {
     let $product = $(`<div class="card col-xs-9 col-sm-5 col-md-3" data-product-id="${id}">`);
     $product.append($(`<img src="${image_url}" alt="${name}" class="img-fluid product-image">`));
-    $product.append($(`<a class="product-title">${name}</a>`));
+    let title =$(`<a class="product-title product-title-clickable" id="title${id}">${name}</a>`);
+    title.on("click", generateProductPage);
+    $product.append(title);
     if (special_price == null) {
         $product.append($(`<span class="product-price">`).text(price));
     }
@@ -103,8 +105,28 @@ let _makeHtmlProducts = ({
         $product.append($(`<p class="product-price old_price">`).text(price));
         $product.append($(`<p class="product-price special_price">`).text(special_price));
     }
-    $product.append($(`<button type="button" class="product-buy-button btn btn-success"><i class="fas fa-shopping-cart"></i> Buy</button>`));
+    let buyButton = $(`<button type="button" class="product-buy-button btn btn-success"><i class="fas fa-shopping-cart"></i> Buy</button>`);
+    buyButton.on("click", addToCart.bind(null, id));
+    $product.append(buyButton);
     return $product;
 };
-// module.exports = generateShoppingContent;
+
+function addProductsGrid(urlString) {
+    console.log(urlString);
+    jQuery.ajax({
+        url: urlString,
+        method: 'get',
+        dataType: 'json',
+        success: function (json) {
+            console.table(json);
+            console.log("Loaded products of category " + currentCategory + " via AJAX!");
+            json.forEach(product => $('.product-grid').append(_makeHtmlProducts(product)));
+            console.log('Products are added to grid');
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        },
+    });
+}
+
 export default generateShoppingContent;

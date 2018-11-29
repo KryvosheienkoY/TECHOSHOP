@@ -1,11 +1,10 @@
 import $ from "jquery";
-
-let generateShoppingContent = require('./ShoppingContentHtml');
+import generateShoppingContent from './ShoppingContentHtml';
 
 
 function generateHomeContent() {
-let contentDiv = $('#contentDIVID');
-let items = $(`
+    let contentDiv = $('#contentDIVID');
+    let items = $(`
   <div class="home">
     <div class="homeCenterIm">
         <img src="../src/img/electronics.jpg">
@@ -18,10 +17,11 @@ let items = $(`
         </div>
     </div>
    </div>`);
+    contentDiv.empty();
     contentDiv.append(items);
 
     $('#homeButtonID').on("click", generateShoppingContent);
 }
 
-// module.exports = generateHomeContent;
+
 export default generateHomeContent;
