@@ -2,6 +2,9 @@ import $ from "jquery";
 import generateProductPage from './ProductPageInfoHTML';
 import {addToCart} from './CartContentHTML';
 
+
+
+
 let currentCategory = 1;
 
 function generateShoppingContent() {
@@ -30,28 +33,29 @@ function generateShoppingHTML() {
             </div>`);
     contentDiv.empty();
     contentDiv.append(items);
-    $('#1').on("click",changeActiveCategory);
+    $('#1').on("click", changeActiveCategory);
 }
 
 
 function changeActiveCategory() {
     let urlString;
     let k = currentCategory - 1;
-    let point=$("ul.categoryList li");
+    let point = $("ul.categoryList li");
     point.eq(k).removeClass("activePoint");
     let num = $(this).attr("id");
-    if (num === undefined)
-        num = 1;
+    if (num === undefined) {
+        num = currentCategory;
+    }
     currentCategory = num;
     k = currentCategory - 1;
     point.eq(k).addClass("activePoint");
     $('.product-grid').empty();
     //not change ==
-    if(currentCategory==1){
+    if (currentCategory == 1) {
         urlString = String("https://nit.tron.net.ua/api/product/list");
     }
-    else{
-        urlString = String("https://nit.tron.net.ua/api/product/list/category/"+currentCategory);
+    else {
+        urlString = String("https://nit.tron.net.ua/api/product/list/category/" + currentCategory);
     }
     addProductsGrid(urlString);
 }
@@ -93,9 +97,9 @@ let _makeHtmlProducts = ({
                              price,
                              special_price,
                          }) => {
-    let $product = $(`<div class="card col-xs-9 col-sm-5 col-md-3" data-product-id="${id}">`);
-    $product.append($(`<img src="${image_url}" alt="${name}" class="img-fluid product-image">`));
-    let title =$(`<a class="product-title product-title-clickable" id="title${id}">${name}</a>`);
+    let $product = $(`<div class="card col-xs-9 col-sm-5 col-md-3" id="cardID${id}">`);
+    $product.append($(`<img src="${image_url}" alt="${name}" id="title${id}" class="img-fluid product-image">`));
+    let title = $(`<a class="product-title product-title-clickable" id="title${id}">${name}</a>`);
     title.on("click", generateProductPage);
     $product.append(title);
     if (special_price == null) {
@@ -120,7 +124,16 @@ function addProductsGrid(urlString) {
         success: function (json) {
             console.table(json);
             console.log("Loaded products of category " + currentCategory + " via AJAX!");
-            json.forEach(product => $('.product-grid').append(_makeHtmlProducts(product)));
+            json.forEach(function (product) {
+                let pr = _makeHtmlProducts(product);
+                $('.product-grid').append(pr);
+            });
+
+            $('.card').on('click', function (e) {
+                if (!$(".product-buy-button").is(e.target))
+                    generateProductPage(e.target.id);
+            });
+
             console.log('Products are added to grid');
         },
         error: function (xhr) {

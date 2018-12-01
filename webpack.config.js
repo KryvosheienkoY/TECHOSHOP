@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // ... contents of webpack.config.js
 module.exports = {
+     mode: 'development',
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'docs'),
@@ -35,5 +36,8 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "css/[name].css",
         }),
+
+        // new UglifyJsPlugin({mangle: false})
+
     ],
 };

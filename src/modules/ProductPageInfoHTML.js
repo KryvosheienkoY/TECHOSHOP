@@ -47,7 +47,7 @@ function addProduct(currentProductID) {
 }
 
 
-function generateProductPage() {
+function generateProductPage(elementID) {
     let contentDiv = $('#contentDIVID');
     let items = $(` 
   <div class="productPage">
@@ -56,9 +56,7 @@ function generateProductPage() {
     contentDiv.empty();
     contentDiv.append(items);
     $('.backButton').on("click",generateShoppingContent);
-
-    let titleID= $(this).attr("id");
-    let num =titleID.replace("title",'');
+    let num =elementID.replace(/[^0-9]/g, '');
     console.log(num);
     addProduct(num);
 }

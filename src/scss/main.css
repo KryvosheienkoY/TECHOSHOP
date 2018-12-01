@@ -1,3 +1,6 @@
+* {
+  max-width: 100%; }
+
 .navbar {
   background: #222222; }
 
@@ -27,7 +30,8 @@
 
 .myFooter {
   background-color: #222222;
-  color: rgba(255, 255, 255, 0.5); }
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center; }
   .myFooter i {
     font-size: 50px; }
   .myFooter .socialButtonsUL {
@@ -43,7 +47,8 @@
     cursor: pointer; }
 
 .contentDIV {
-  text-align: center; }
+  text-align: center;
+  min-height: calc(100vh - 327px); }
   .contentDIV .home {
     margin: 30px;
     display: inline-block; }
@@ -58,6 +63,7 @@
         padding: 40px;
         height: 100%;
         width: 35%;
+        min-width: 245px;
         position: absolute;
         top: 0;
         left: 0;
@@ -115,7 +121,8 @@
         z-index: 10;
         background-color: rgba(255, 251, 240, 0.1);
         box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.4);
-        border: 1px solid #fec400; }
+        border: 1px solid #fec400;
+        cursor: pointer; }
       .shopping .productsRightPart .card .product-image {
         max-height: 200px;
         object-fit: contain;
@@ -169,7 +176,11 @@
 
 #productCartGridID {
   margin: 20px;
-  width: 80%; }
+  width: 95%; }
+
+.cartInfo {
+  margin: 40px;
+  font-size: 25px; }
 
 .productCartInfo {
   text-align: left; }
@@ -178,12 +189,99 @@
     height: 80px; }
     .productCartInfo .imWrap .product-image {
       max-width: 100%;
-      height: auto;
+      max-height: 100%;
       margin: 0;
       display: inline-block;
       vertical-align: middle; }
 
 .totalRow {
   text-align: right; }
+
+.product-removeB {
+  font-size: 15px;
+  text-transform: uppercase; }
+
+.form-row {
+  margin: 20px;
+  display: inline-block;
+  width: 95%;
+  justify-content: center; }
+
+.form-group {
+  margin: 5px;
+  width: 30%;
+  display: inline-block; }
+  .form-group input {
+    border-color: #fec400; }
+
+.formHeader {
+  font-size: x-large;
+  color: #fec400; }
+
+.orderB {
+  background-color: #fec400;
+  color: #222222; }
+
+.modal-confirm {
+  color: #636363;
+  width: 325px;
+  margin-top: 10%; }
+  .modal-confirm .modal-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none; }
+  .modal-confirm .modal-header {
+    border-bottom: none;
+    position: relative; }
+  .modal-confirm .modal-title {
+    text-align: center;
+    font-size: 26px;
+    margin: 30px 0 -15px;
+    width: 100%; }
+  .modal-confirm .form-control, .modal-confirm .modal-confirm .btn {
+    min-height: 40px;
+    border-radius: 3px; }
+  .modal-confirm .close {
+    position: absolute;
+    top: -5px;
+    right: -5px; }
+  .modal-confirm .modal-footer {
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 13px; }
+  .modal-confirm .icon-box {
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: -70px;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    z-index: 9;
+    background: #fec400;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1); }
+  .modal-confirm .icon-box i {
+    font-size: 58px;
+    position: relative;
+    top: 3px; }
+  .modal-confirm .modal-dialog {
+    margin-top: 80px; }
+  .modal-confirm .btn {
+    color: #fff;
+    border-radius: 4px;
+    background: #fec400;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    border: none; }
+    .modal-confirm .btn:hover, .modal-confirm .btn:focus, .modal-confirm .btn:active {
+      background-color: #c7a300;
+      box-shadow: 0 0 0 0.2rem rgba(199, 163, 0, 0.5);
+      outline: none; }
 
 /*# sourceMappingURL=main.css.map */
