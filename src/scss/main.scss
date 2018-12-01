@@ -65,6 +65,7 @@ $leftBarWidth: 200px;
 .contentDIV {
   text-align: center;
   min-height: calc(100vh - 327px);
+  overflow: auto;
   .home {
     margin: 30px;
     display: inline-block;
@@ -178,19 +179,19 @@ $leftBarWidth: 200px;
         margin: auto 7px 5px;
       }
     }
-    a {
-      cursor: pointer;
-      &:hover {
-        color: $myYellowColor;
-        text-decoration: underline;
-      }
-
-    }
   }
 }
 
 .product-title {
   font-weight: bolder;
+}
+
+.contentDIV a {
+  cursor: pointer;
+  &:hover {
+    color: $myYellowColor !important;
+    text-decoration: underline !important;
+  }
 }
 
 .product-price {
@@ -225,6 +226,7 @@ $leftBarWidth: 200px;
   .productInfoPage {
     text-align: left;
     min-height: 500px;
+    margin: 50px;
     img {
       max-width: 50%;
       float: left;
@@ -266,6 +268,11 @@ $leftBarWidth: 200px;
 
 .totalRow {
   text-align: right;
+  font-size: 30px;
+  font-weight: lighter;
+  #totalCell {
+    text-align: left;
+  }
 }
 
 .product-removeB {
@@ -290,7 +297,7 @@ $leftBarWidth: 200px;
 }
 
 .formHeader {
-  font-size: x-large;
+  font-size: 35px;
   color: $myYellowColor;
 }
 
@@ -303,73 +310,88 @@ $leftBarWidth: 200px;
   color: #636363;
   width: 325px;
   margin-top: 10%;
-  .modal-content {
-    padding: 20px;
-    border-radius: 5px;
-    border: none;
-  }
-  .modal-header {
-    border-bottom: none;
-    position: relative;
-  }
-  .modal-title {
-    text-align: center;
-    font-size: 26px;
-    margin: 30px 0 -15px;
-    width: 100%;
-  }
-  .form-control, .modal-confirm .btn {
-    min-height: 40px;
-    border-radius: 3px;
-  }
-  .close {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-  }
-  .modal-footer {
-    border: none;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 13px;
-  }
-  .icon-box {
-    color: #fff;
-    position: absolute;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    top: -70px;
-    width: 95px;
-    height: 95px;
-    border-radius: 50%;
-    z-index: 9;
-    background: $myYellowColor;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
-  }
-  .icon-box i {
-    font-size: 58px;
-    position: relative;
-    top: 3px;
-  }
-  .modal-dialog {
-    margin-top: 80px;
-  }
-  .btn {
-    color: #fff;
-    border-radius: 4px;
-    background: $myYellowColor;
-    text-decoration: none;
-    transition: all 0.4s;
-    line-height: normal;
-    border: none;
+}
 
-    &:hover, &:focus, &:active {
-      background-color: rgb(199, 163, 0);
-      box-shadow: 0 0 0 0.2rem rgba(199, 163,0, 0.5);
-      outline: none;
-    }
+#myModalAdded .modal-confirm {
+  width: auto;
+}
+
+.modal-content {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+}
+
+.modal-header {
+  border-bottom: none;
+  position: relative;
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 26px;
+  margin: 30px 0 -15px;
+  width: 100%;
+}
+
+.form-control, .modal-confirm .btn {
+  min-height: 40px;
+  border-radius: 3px;
+}
+
+.close {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+.modal-footer {
+  border: none;
+  text-align: center;
+  align-items: baseline;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.icon-box {
+  color: #fff;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: -70px;
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  z-index: 9;
+  background: $myYellowColor;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.icon-box i {
+  font-size: 58px;
+  position: relative;
+  top: 3px;
+}
+
+.modal-dialog {
+  margin-top: 80px;
+}
+
+.modal .btn {
+  color: #fff;
+  border-radius: 4px;
+  background: $myYellowColor;
+  text-decoration: none;
+  transition: all 0.4s;
+  line-height: normal;
+  border: none;
+
+  &:hover, &:focus, &:active {
+    background-color: rgb(199, 163, 0);
+    box-shadow: 0 0 0 0.2rem rgba(199, 163, 0, 0.5);
+    outline: none;
   }
 }

@@ -1,4 +1,4 @@
-import $ from "jquery";
+
 import generateShoppingContent from './ShoppingContentHtml';
 import {addToCart} from './CartContentHTML';
 

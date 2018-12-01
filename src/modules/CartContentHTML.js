@@ -1,4 +1,6 @@
-import $ from "jquery";
+import generateShoppingContent from "./ShoppingContentHtml";
+import generateProductPage from "./ProductPageInfoHTML";
+
 
 let cart;
 
@@ -34,7 +36,7 @@ function generateEmptyCartView() {
 }
 
 function generateSuccessfulModal() {
-    let content = $(`<div id="myModal" class="modal fade">
+    let content = $(`<div id="myModal" class="modal">
 	<div class="modal-dialog modal-confirm">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -47,44 +49,47 @@ function generateSuccessfulModal() {
 				<p class="text-center">Your order has been confirmed. Check your email for details.</p>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-success btn-block" data-dismiss="modal" id="modalOKID">OK</button>
+				<button class="btn btn-block" data-dismiss="modal" id="modalOKID">OK</button>
 			</div>
 		</div>
 	</div>
 </div>     `);
     let contentDiv = $('#contentDIVID');
     contentDiv.append(content);
-    $('#modalOKID').on("click", cleanCart);
+    // remove attribs
+    $('body').removeAttr('style');
 }
 
 function cleanCart() {
-    //clean view
     cart.products = [];
     localStorage.setItem('cart', JSON.stringify(cart));
-    // empty cart view
-    generateCartContent();
+    //clean view
     setCartChangeCounter();
+    generateShoppingContent();
 }
 
 function processOrder() {
 //post
+    let strData = "name=" + $('#inputNameID').val() + '&' + "email=" + $('#inputEmailID').val() + '&' + "phone=" + $('#inputPhoneNumID').val() + '&';
+    // cart products
+    cart.products.forEach(function (product) {
+        strData += "products[" + product.id + "]=" + product.quantity + '&';
+    });
+    // my token
+    strData += "token=vj_dfNXhyP2f-T0ZxfDW";
+    console.log("STRDATA - " + strData);
     $.ajax({
         url: 'https://nit.tron.net.ua/api/order/add',
         method: 'post',
-        data: 'name=Ivan&email=ivan@ivan.com&phone=123&products[2]=5&products[4]=1&token=....',
+        data: strData,
         dataType: 'json',
-        success: function(json){
+        success: function (json) {
             console.log(json);
+            //if successful - clean cart
+            cleanCart();
         },
     });
 
-//clean cart
-// modal successful order
-//     let button = $('#orderBID');
-//     button.addClass('trigger-btn');
-//     button.attr('data-target', '#myModal');
-//     button.attr('data-toggle', 'modal');
-//     generateSuccessfulModal();
 }
 
 function generateOrderForm() {
@@ -107,14 +112,15 @@ function generateOrderForm() {
      </div>
   </div>
   <div class="form-row">
-      <button type="submit" class="btn orderB" id ="orderBID">Order</button>
+      <button type="submit" class="btn orderB" id ="orderBID" >Order</button>
   </div>
 </form>`));
-    let button = $('#orderBID');
-    button.addClass('trigger-btn');
-    button.attr('data-target', '#myModal');
-    button.attr('data-toggle', 'modal');
+    // modal successful order
     generateSuccessfulModal();
+
+    let button = $('#orderBID');
+    button.attr('data-toggle', 'modal');
+    button.attr('data-target', '#myModal');
     button.on("click", processOrder);
 }
 
@@ -142,11 +148,16 @@ function generateCartContent() {
         console.log("Buttons were inited");
         //submit row
         $('#productCartGridID').append($(`<tfoot><tr class="totalRow"><td colspan="5">Subtotal</td>' +
-        '<td id="totalCell"></td></tfoot>`));
+        '<td id="totalCell" colspan="1"></td></tfoot>`));
         //generate order form
         generateOrderForm();
         // counting total sum
         countTotalCell();
+       //  // remove fade & attribs
+       // $('.modal-backdrop').remove();
+       // let b =$('body');
+       //  while(b.attributes.length > 0)
+       //      b.removeAttribute(b.attributes[0].name);
     }
 }
 
@@ -259,9 +270,43 @@ function loadProduct(currentProductID) {
 }
 
 
+function generateModalAddedToCart() {
+    let content = $(` <div id="myModalAdded" class="modal">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="fas fa-check"></i>
+				</div>				
+				<p class="modal-title">Added!</p>	
+			</div>
+			<div class="modal-body">
+				<p class="text-center">Product was successfuly added to your cart.</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-block" data-dismiss="modal" id="modalToCartID">Go to cart</button>
+				<button class="btn btn-block" data-dismiss="modal">Continue shopping</button>
+			</div>
+		</div>
+	</div>
+</div>`);
+    let contentDiv = $('#contentDIVID');
+    contentDiv.append(content);
+    jQuery.noConflict();
+    $('#myModalAdded').modal('show');
+    $('#modalToCartID').on("click", function () {
+        jQuery.noConflict();
+        $('#myModalAdded').modal('hide');
+        generateCartContent();
+    });
+    // remove attribs
+    $('body').removeAttr('style');
+}
+
 function addToCart(productID) {
-    if (localStorage && localStorage.getItem('cart')) {
-        cart = JSON.parse(localStorage.getItem('cart'));
+    let storageCart = localStorage.getItem('cart');
+    if (storageCart) {
+        cart = JSON.parse(storageCart);
         console.log("ProductID " + productID);
         // check if product is added
         let i = findInCart(productID);
@@ -272,6 +317,9 @@ function addToCart(productID) {
             changeQ(i, 1);
         }
         setCartChangeCounter();
+
+        // add popup window
+        generateModalAddedToCart();
     }
 }
 
@@ -301,7 +349,8 @@ function setCartChangeCounter() {
     prAr.forEach(function (product) {
         num += product.quantity;
     });
-    $('#cartCounter').text(num);
+    let counter = $('#cartCounter');
+    counter.text(num);
 }
 
 let _makeHtmlCartProduct = ({
@@ -315,7 +364,11 @@ let _makeHtmlCartProduct = ({
                             }) => {
     let $product = $(`<tr class="productCartInfo" id="productTR${id}">`);
     $product.append($(`<td class="imWrap"><img src="${image_url}" alt="${name}" class="img-fluid product-image"></td>`));
-    $product.append($(`<td class="product-title">`).text(name));
+    let tdTitle = $(`<td>`);
+    let title = $(`<a class="product-title" id="title${id}">${name}</a>`);
+    title.on("click", generateProductPage.bind(null, title.attr('id')));
+    tdTitle.append(title);
+    $product.append(tdTitle);
     let priceTd = $(`<td class="product-price">`);
     let totalPrice;
     if (special_price == null) {

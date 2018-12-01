@@ -48,7 +48,8 @@
 
 .contentDIV {
   text-align: center;
-  min-height: calc(100vh - 327px); }
+  min-height: calc(100vh - 327px);
+  overflow: auto; }
   .contentDIV .home {
     margin: 30px;
     display: inline-block; }
@@ -133,14 +134,15 @@
         width: 100%;
         height: 35px;
         margin: auto 7px 5px; }
-    .shopping .productsRightPart a {
-      cursor: pointer; }
-      .shopping .productsRightPart a:hover {
-        color: #fec400;
-        text-decoration: underline; }
 
 .product-title {
   font-weight: bolder; }
+
+.contentDIV a {
+  cursor: pointer; }
+  .contentDIV a:hover {
+    color: #fec400 !important;
+    text-decoration: underline !important; }
 
 .product-price {
   color: #222222;
@@ -166,7 +168,8 @@
 
 .productPage .productInfoPage {
   text-align: left;
-  min-height: 500px; }
+  min-height: 500px;
+  margin: 50px; }
   .productPage .productInfoPage img {
     max-width: 50%;
     float: left;
@@ -196,7 +199,11 @@
       vertical-align: middle; }
 
 .totalRow {
-  text-align: right; }
+  text-align: right;
+  font-size: 30px;
+  font-weight: lighter; }
+  .totalRow #totalCell {
+    text-align: left; }
 
 .product-removeB {
   font-size: 15px;
@@ -216,7 +223,7 @@
     border-color: #fec400; }
 
 .formHeader {
-  font-size: x-large;
+  font-size: 35px;
   color: #fec400; }
 
 .orderB {
@@ -227,61 +234,75 @@
   color: #636363;
   width: 325px;
   margin-top: 10%; }
-  .modal-confirm .modal-content {
-    padding: 20px;
-    border-radius: 5px;
-    border: none; }
-  .modal-confirm .modal-header {
-    border-bottom: none;
-    position: relative; }
-  .modal-confirm .modal-title {
-    text-align: center;
-    font-size: 26px;
-    margin: 30px 0 -15px;
-    width: 100%; }
-  .modal-confirm .form-control, .modal-confirm .modal-confirm .btn {
-    min-height: 40px;
-    border-radius: 3px; }
-  .modal-confirm .close {
-    position: absolute;
-    top: -5px;
-    right: -5px; }
-  .modal-confirm .modal-footer {
-    border: none;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 13px; }
-  .modal-confirm .icon-box {
-    color: #fff;
-    position: absolute;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    top: -70px;
-    width: 95px;
-    height: 95px;
-    border-radius: 50%;
-    z-index: 9;
-    background: #fec400;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1); }
-  .modal-confirm .icon-box i {
-    font-size: 58px;
-    position: relative;
-    top: 3px; }
-  .modal-confirm .modal-dialog {
-    margin-top: 80px; }
-  .modal-confirm .btn {
-    color: #fff;
-    border-radius: 4px;
-    background: #fec400;
-    text-decoration: none;
-    transition: all 0.4s;
-    line-height: normal;
-    border: none; }
-    .modal-confirm .btn:hover, .modal-confirm .btn:focus, .modal-confirm .btn:active {
-      background-color: #c7a300;
-      box-shadow: 0 0 0 0.2rem rgba(199, 163, 0, 0.5);
-      outline: none; }
+
+#myModalAdded .modal-confirm {
+  width: auto; }
+
+.modal-content {
+  padding: 20px;
+  border-radius: 5px;
+  border: none; }
+
+.modal-header {
+  border-bottom: none;
+  position: relative; }
+
+.modal-title {
+  text-align: center;
+  font-size: 26px;
+  margin: 30px 0 -15px;
+  width: 100%; }
+
+.form-control, .modal-confirm .btn {
+  min-height: 40px;
+  border-radius: 3px; }
+
+.close {
+  position: absolute;
+  top: -5px;
+  right: -5px; }
+
+.modal-footer {
+  border: none;
+  text-align: center;
+  align-items: baseline;
+  border-radius: 5px;
+  font-size: 13px; }
+
+.icon-box {
+  color: #fff;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: -70px;
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  z-index: 9;
+  background: #fec400;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1); }
+
+.icon-box i {
+  font-size: 58px;
+  position: relative;
+  top: 3px; }
+
+.modal-dialog {
+  margin-top: 80px; }
+
+.modal .btn {
+  color: #fff;
+  border-radius: 4px;
+  background: #fec400;
+  text-decoration: none;
+  transition: all 0.4s;
+  line-height: normal;
+  border: none; }
+  .modal .btn:hover, .modal .btn:focus, .modal .btn:active {
+    background-color: #c7a300;
+    box-shadow: 0 0 0 0.2rem rgba(199, 163, 0, 0.5);
+    outline: none; }
 

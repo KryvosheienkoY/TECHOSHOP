@@ -1,4 +1,4 @@
-import $ from "jquery";
+
 import generateProductPage from './ProductPageInfoHTML';
 import {addToCart} from './CartContentHTML';
 
@@ -100,14 +100,13 @@ let _makeHtmlProducts = ({
     let $product = $(`<div class="card col-xs-9 col-sm-5 col-md-3" id="cardID${id}">`);
     $product.append($(`<img src="${image_url}" alt="${name}" id="title${id}" class="img-fluid product-image">`));
     let title = $(`<a class="product-title product-title-clickable" id="title${id}">${name}</a>`);
-    title.on("click", generateProductPage);
     $product.append(title);
     if (special_price == null) {
-        $product.append($(`<span class="product-price">`).text(price));
+        $product.append($(`<span class="product-price" id="productPrice${id}">`).text(price));
     }
     else {
-        $product.append($(`<p class="product-price old_price">`).text(price));
-        $product.append($(`<p class="product-price special_price">`).text(special_price));
+        $product.append($(`<p class="product-price old_price" id="productOldPrice${id}">`).text(price));
+        $product.append($(`<p class="product-price special_price" id="productSpecialPrice${id}">`).text(special_price));
     }
     let buyButton = $(`<button type="button" class="product-buy-button btn btn-success"><i class="fas fa-shopping-cart"></i> Buy</button>`);
     buyButton.on("click", addToCart.bind(null, id));
