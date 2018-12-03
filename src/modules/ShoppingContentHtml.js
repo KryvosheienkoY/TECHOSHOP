@@ -1,19 +1,17 @@
-
 import generateProductPage from './ProductPageInfoHTML';
 import {addToCart} from './CartContentHTML';
 
-
-
-
 let currentCategory = 1;
 
+//generate view of page "Shopping Content"
 function generateShoppingContent() {
     generateShoppingHTML();
     addCategoriesHTML();
 }
 
+// generate html block for categories part
 function generateShoppingHTML() {
-
+console.log("hh");
     let contentDiv = $('#contentDIVID');
     let items = $(`
             <div class="shopping">
@@ -36,7 +34,7 @@ function generateShoppingHTML() {
     $('#1').on("click", changeActiveCategory);
 }
 
-
+//change active category of products
 function changeActiveCategory() {
     let urlString;
     let k = currentCategory - 1;
@@ -60,15 +58,14 @@ function changeActiveCategory() {
     addProductsGrid(urlString);
 }
 
+//load categores and add them
 function addCategoriesHTML() {
     jQuery.ajax({
         url: 'http://nit.tron.net.ua/api/category/list',
         method: 'get',
         dataType: 'json',
         success: function (json) {
-            console.log('Loaded categories via AJAX!');
             json.forEach(category => $('.categoryList').append(_makeHtmlCategories(category)));
-            console.log('Added to list');
             // choosing current active category - by default - 0 (all)
             changeActiveCategory();
         },
@@ -78,6 +75,7 @@ function addCategoriesHTML() {
     });
 }
 
+//construct html of a category
 let _makeHtmlCategories = ({
                                id,
                                name,
@@ -88,7 +86,7 @@ let _makeHtmlCategories = ({
     $category.on("click", changeActiveCategory);
     return $category;
 };
-
+//construct html of a product
 let _makeHtmlProducts = ({
                              id,
                              name,
@@ -114,26 +112,21 @@ let _makeHtmlProducts = ({
     return $product;
 };
 
+//load products and add them to a product grid
 function addProductsGrid(urlString) {
-    console.log(urlString);
     jQuery.ajax({
         url: urlString,
         method: 'get',
         dataType: 'json',
         success: function (json) {
-            console.table(json);
-            console.log("Loaded products of category " + currentCategory + " via AJAX!");
             json.forEach(function (product) {
                 let pr = _makeHtmlProducts(product);
                 $('.product-grid').append(pr);
             });
-
             $('.card').on('click', function (e) {
                 if (!$(".product-buy-button").is(e.target))
                     generateProductPage(e.target.id);
             });
-
-            console.log('Products are added to grid');
         },
         error: function (xhr) {
             alert("An error occured: " + xhr.status + " " + xhr.statusText);

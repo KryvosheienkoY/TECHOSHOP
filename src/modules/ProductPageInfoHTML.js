@@ -1,7 +1,7 @@
-
 import generateShoppingContent from './ShoppingContentHtml';
 import {addToCart} from './CartContentHTML';
 
+// construct product with html
 let _makeHtmlInfoProduct = ({
                                 id,
                                 name,
@@ -27,18 +27,15 @@ let _makeHtmlInfoProduct = ({
     return $product;
 };
 
+// load product to product and add it to page
 function addProduct(currentProductID) {
     let urlString = String("https://nit.tron.net.ua/api/product/" + currentProductID);
-    console.log(urlString);
     jQuery.ajax({
         url: urlString,
         method: 'get',
         dataType: 'json',
         success: function (json) {
-            console.table(json);
-            console.log("Loaded product " + currentProductID + " via AJAX!");
             $('.productPage').append(_makeHtmlInfoProduct(json));
-            console.log('Products are added to grid');
         },
         error: function (xhr) {
             alert("An error occured: " + xhr.status + " " + xhr.statusText);
@@ -46,7 +43,7 @@ function addProduct(currentProductID) {
     });
 }
 
-
+// generate page view "Product Page"
 function generateProductPage(elementID) {
     let contentDiv = $('#contentDIVID');
     let items = $(` 
@@ -57,7 +54,6 @@ function generateProductPage(elementID) {
     contentDiv.append(items);
     $('.backButton').on("click",generateShoppingContent);
     let num =elementID.replace(/[^0-9]/g, '');
-    console.log(num);
     addProduct(num);
 }
 

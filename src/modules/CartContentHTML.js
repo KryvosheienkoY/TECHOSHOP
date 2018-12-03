@@ -1,9 +1,9 @@
 import generateShoppingContent from "./ShoppingContentHtml";
 import generateProductPage from "./ProductPageInfoHTML";
 
-
 let cart;
 
+// initialization of cart - if local storage is empty - set a cart
 function initCart() {
     cart = JSON.parse(localStorage.getItem('cart'));
     if (cart == null) {
@@ -28,6 +28,7 @@ function Product(id, name, image_url, description, price, special_price, quantit
     this.quantity = quantity;
 }
 
+//generate html view of an empty cart
 function generateEmptyCartView() {
     let contentDiv = $('#contentDIVID');
     contentDiv.empty();
@@ -35,6 +36,7 @@ function generateEmptyCartView() {
     contentDiv.append(items);
 }
 
+//generate html modal(popup) if order was successfully made
 function generateSuccessfulModal() {
     let content = $(`<div id="myModal" class="modal">
 	<div class="modal-dialog modal-confirm">
@@ -58,18 +60,22 @@ function generateSuccessfulModal() {
     contentDiv.append(content);
     // remove attribs
     $('body').removeAttr('style');
+    $('#myModal').on("hide.bs.modal", function (e) {
+        generateShoppingContent();
+        $(this).off('hide.bs.modal');
+    });
 }
 
+//clean cart of products
 function cleanCart() {
     cart.products = [];
     localStorage.setItem('cart', JSON.stringify(cart));
     //clean view
     setCartChangeCounter();
-    generateShoppingContent();
 }
 
+//post method, if successful - generate popup and clean cart
 function processOrder() {
-//post
     let strData = "name=" + $('#inputNameID').val() + '&' + "email=" + $('#inputEmailID').val() + '&' + "phone=" + $('#inputPhoneNumID').val() + '&';
     // cart products
     cart.products.forEach(function (product) {
@@ -77,23 +83,27 @@ function processOrder() {
     });
     // my token
     strData += "token=vj_dfNXhyP2f-T0ZxfDW";
-    console.log("STRDATA - " + strData);
     $.ajax({
         url: 'https://nit.tron.net.ua/api/order/add',
         method: 'post',
         data: strData,
         dataType: 'json',
-        success: function (json) {
-            console.log(json);
-            //if successful - clean cart
+        success: function () {
+            // //if successful -
+            // modal successful order
+            generateSuccessfulModal();
+            jQuery.noConflict();
+            $('#myModal').modal('show');
+            // clean cart
             cleanCart();
         },
     });
 
 }
 
+// generate view of form for ordering
 function generateOrderForm() {
-    $('#contentDIVID').append($(`<form>
+    $('#contentDIVID').append($(`<form id="formOrderID">
   <div class="form-row">
     <p class="formHeader">Quick Order</p>
      <div class="form-group">
@@ -118,12 +128,13 @@ function generateOrderForm() {
     // modal successful order
     generateSuccessfulModal();
 
-    let button = $('#orderBID');
-    button.attr('data-toggle', 'modal');
-    button.attr('data-target', '#myModal');
-    button.on("click", processOrder);
+    // let button = $('#orderBID');
+    // button.attr('data-toggle', 'modal');
+    // button.attr('data-target', '#myModal');
+    $('#formOrderID').on("submit", processOrder);
 }
 
+//generate html view of a page "Cart"
 function generateCartContent() {
     let contentDiv = $('#contentDIVID');
     let cart = JSON.parse(localStorage.getItem('cart'));
@@ -136,7 +147,6 @@ function generateCartContent() {
         productCart.append($(`<table class="table" id="productCartGridID">`));
         contentDiv.empty();
         contentDiv.append(productCart);
-        console.log("Cart - " + cart);
         for (let i = 0; i < length; i++) {
             let product = cart.products[i];
             $('#productCartGridID').append(_makeHtmlCartProduct(product));
@@ -145,7 +155,6 @@ function generateCartContent() {
         $('.minusQuantityButton').on("click", minusQ);
         $('.plusQuantityButton').on("click", plusQ);
         $('.product-removeB').on("click", removeProduct);
-        console.log("Buttons were inited");
         //submit row
         $('#productCartGridID').append($(`<tfoot><tr class="totalRow"><td colspan="5">Subtotal</td>' +
         '<td id="totalCell" colspan="1"></td></tfoot>`));
@@ -153,21 +162,16 @@ function generateCartContent() {
         generateOrderForm();
         // counting total sum
         countTotalCell();
-       //  // remove fade & attribs
-       // $('.modal-backdrop').remove();
-       // let b =$('body');
-       //  while(b.attributes.length > 0)
-       //      b.removeAttribute(b.attributes[0].name);
     }
 }
 
+// count (recount) the value of totalCell - subtotal of all products
 function countTotalCell() {
     let totalPrice = 0;
     // counting total sum
     let dataRows = $("#productCartGridID tr:not('.totalRow')");
     dataRows.each(function () {
         let valuePrice = parseInt($('td', this).eq(4).text());
-        console.log("valuePrice price - " + valuePrice);
         if (!isNaN(valuePrice)) {
             totalPrice = totalPrice + valuePrice;
         }
@@ -175,7 +179,7 @@ function countTotalCell() {
     $('#totalCell').text(totalPrice);
 }
 
-
+// Disable\Enable button of reducing number of a product in a cart
 function disableEnableMinusButton(product) {
     let b = "#minusB" + product.id;
     if (product.quantity == 1) {
@@ -186,6 +190,7 @@ function disableEnableMinusButton(product) {
     }
 }
 
+//Remove product from a cart
 function removeProduct() {
     //remove tr
     let butID = $(this).attr("id");
@@ -209,22 +214,26 @@ function removeProduct() {
 
 }
 
+//increment value
 function increment(i, oldval) {
     return i + +oldval;
 }
 
+//change quality of product(reduce)
 function minusQ() {
     let butID = $(this).attr("id");
     let productID = butID.replace("minusB", '');
     changeQTD(productID, -1);
 }
 
+//change quality of product(increase)
 function plusQ() {
     let butID = $(this).attr("id");
     let productID = butID.replace("plusB", '');
     changeQTD(productID, 1);
 }
 
+//change quality of product
 function changeQTD(productID, num) {
     // i - index of product in array
     let i = findInCart(productID);
@@ -247,20 +256,17 @@ function changeQTD(productID, num) {
     countTotalCell();
 }
 
+// load product
 function loadProduct(currentProductID) {
     let urlString = String("https://nit.tron.net.ua/api/product/" + currentProductID);
-    console.log(urlString);
     jQuery.ajax({
         url: urlString,
         method: 'get',
         dataType: 'json',
         success: function (json) {
-            console.table(json);
-            console.log("Loaded product " + currentProductID + " via AJAX!");
             let product = new Product(json.id, json.name, json.image_url,
                 json.description, json.price, json.special_price, 1);
             cart.products.push(product);
-            console.log("added pr - " + product.name);
             setCartChangeCounter();
         },
         error: function (xhr) {
@@ -269,7 +275,7 @@ function loadProduct(currentProductID) {
     });
 }
 
-
+// generate html popup when product was added to cart
 function generateModalAddedToCart() {
     let content = $(` <div id="myModalAdded" class="modal">
 	<div class="modal-dialog modal-confirm">
@@ -303,11 +309,11 @@ function generateModalAddedToCart() {
     $('body').removeAttr('style');
 }
 
+// add product to cart
 function addToCart(productID) {
     let storageCart = localStorage.getItem('cart');
     if (storageCart) {
         cart = JSON.parse(storageCart);
-        console.log("ProductID " + productID);
         // check if product is added
         let i = findInCart(productID);
         if (i == -1) {
@@ -323,6 +329,7 @@ function addToCart(productID) {
     }
 }
 
+//find if product is in cart, if yes - return it`s array index, else return -1
 function findInCart(productID) {
     for (let i = 0; i < cart.products.length; i++) {
         let p = cart.products[i];
@@ -334,6 +341,7 @@ function findInCart(productID) {
     return -1;
 }
 
+// change quality of product by index
 function changeQ(i, num) {
     let p = cart.products[i];
     let q = p.quantity + num;
@@ -341,6 +349,7 @@ function changeQ(i, num) {
         cart.products[i].quantity = q;
 }
 
+// change view of counter in menuBar
 function setCartChangeCounter() {
     localStorage.setItem('cart', JSON.stringify(cart));
     // change menuBar cart counter
@@ -353,6 +362,7 @@ function setCartChangeCounter() {
     counter.text(num);
 }
 
+// construct product with html
 let _makeHtmlCartProduct = ({
                                 id,
                                 name,

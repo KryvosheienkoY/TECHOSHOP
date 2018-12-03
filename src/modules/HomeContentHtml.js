@@ -1,6 +1,6 @@
 import generateShoppingContent from './ShoppingContentHtml';
 
-
+//generate html content of page "Home"
 function generateHomeContent() {
     let contentDiv = $('#contentDIVID');
     let items = $(`
