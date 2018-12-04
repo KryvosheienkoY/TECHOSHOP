@@ -60,7 +60,6 @@ $leftBarWidth: 200px;
 .contentDIV {
   text-align: center;
   min-height: calc(100vh - 246px);
-  overflow: auto;
   a {
     cursor: pointer;
     &:hover {
@@ -255,7 +254,7 @@ $leftBarWidth: 200px;
 
   //for table
   .table-responsive {
-    overflow-x: hidden;
+    overflow-x: auto;
     #productCartGridID {
       margin: 20px;
 

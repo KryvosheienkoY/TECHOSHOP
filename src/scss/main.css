@@ -42,8 +42,7 @@
 
 .contentDIV {
   text-align: center;
-  min-height: calc(100vh - 246px);
-  overflow: auto; }
+  min-height: calc(100vh - 246px); }
   .contentDIV a {
     cursor: pointer; }
     .contentDIV a:hover {
@@ -179,7 +178,7 @@
         display: inline-block;
         vertical-align: middle; }
   .contentDIV .table-responsive {
-    overflow-x: hidden; }
+    overflow-x: auto; }
     .contentDIV .table-responsive #productCartGridID {
       margin: 20px; }
       .contentDIV .table-responsive #productCartGridID .totalRow {
