@@ -9,7 +9,7 @@ function generateHomeContent() {
     let items = $(`
   <div class="home">
     <div class="homeCenterIm">
-        <img src="../src/img/electronics.jpg">
+        <img src="img/electronics.jpg">
         <div class="saleInfo">
          <p class="header">price drop!</p>
          <p>Up to 40% off!</p>
