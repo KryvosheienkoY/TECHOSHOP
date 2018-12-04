@@ -2,6 +2,9 @@ import generateShoppingContent from './ShoppingContentHtml';
 
 //generate html content of page "Home"
 function generateHomeContent() {
+    //change active header in menubar
+    $('#navBarID li').removeClass('active');
+    $('#menuHomeID').addClass('active');
     let contentDiv = $('#contentDIVID');
     let items = $(`
   <div class="home">

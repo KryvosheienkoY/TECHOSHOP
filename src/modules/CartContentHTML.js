@@ -58,12 +58,7 @@ function generateSuccessfulModal() {
 </div>     `);
     let contentDiv = $('#contentDIVID');
     contentDiv.append(content);
-    // remove attribs
-    $('body').removeAttr('style');
-    $('#myModal').on("hide.bs.modal", function (e) {
-        generateShoppingContent();
-        $(this).off('hide.bs.modal');
-    });
+    $('#myModal').on("hide.bs.modal", generateShoppingContent);
 }
 
 //clean cart of products
@@ -125,17 +120,14 @@ function generateOrderForm() {
       <button type="submit" class="btn orderB" id ="orderBID" >Order</button>
   </div>
 </form>`));
-    // modal successful order
-    generateSuccessfulModal();
-
-    // let button = $('#orderBID');
-    // button.attr('data-toggle', 'modal');
-    // button.attr('data-target', '#myModal');
     $('#formOrderID').on("submit", processOrder);
 }
 
 //generate html view of a page "Cart"
 function generateCartContent() {
+    //change active header in menubar
+    $('#navBarID li').removeClass('active');
+    $('#menucartID').addClass('active');
     let contentDiv = $('#contentDIVID');
     let cart = JSON.parse(localStorage.getItem('cart'));
     let length = cart.products.length;
@@ -254,6 +246,8 @@ function changeQTD(productID, num) {
     tP.text(product.quantity * price);
     // refresh total cell
     countTotalCell();
+    //refresh counter in MenuBar
+    setCartChangeCounter();
 }
 
 // load product
@@ -305,8 +299,6 @@ function generateModalAddedToCart() {
         $('#myModalAdded').modal('hide');
         generateCartContent();
     });
-    // remove attribs
-    $('body').removeAttr('style');
 }
 
 // add product to cart

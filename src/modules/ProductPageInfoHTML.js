@@ -45,6 +45,9 @@ function addProduct(currentProductID) {
 
 // generate page view "Product Page"
 function generateProductPage(elementID) {
+    //change active header in menubar
+    $('#navBarID li').removeClass('active');
+    $('#menuShoppingID').addClass('active');
     let contentDiv = $('#contentDIVID');
     let items = $(` 
   <div class="productPage">
@@ -52,8 +55,8 @@ function generateProductPage(elementID) {
    </div>`);
     contentDiv.empty();
     contentDiv.append(items);
-    $('.backButton').on("click",generateShoppingContent);
-    let num =elementID.replace(/[^0-9]/g, '');
+    $('.backButton').on("click", generateShoppingContent);
+    let num = elementID.replace(/[^0-9]/g, '');
     addProduct(num);
 }
 

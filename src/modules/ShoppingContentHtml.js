@@ -11,7 +11,9 @@ function generateShoppingContent() {
 
 // generate html block for categories part
 function generateShoppingHTML() {
-console.log("hh");
+    //change active header in menubar
+    $('#navBarID li').removeClass('active');
+    $('#menuShoppingID').addClass('active');
     let contentDiv = $('#contentDIVID');
     let items = $(`
             <div class="shopping">
@@ -124,7 +126,7 @@ function addProductsGrid(urlString) {
                 $('.product-grid').append(pr);
             });
             $('.card').on('click', function (e) {
-                if (!$(".product-buy-button").is(e.target))
+                if (!$(".product-buy-button").is(e.target) && !$(".fas").is(e.target))
                     generateProductPage(e.target.id);
             });
         },
