@@ -63,7 +63,7 @@ function changeActiveCategory() {
 //load categores and add them
 function addCategoriesHTML() {
     jQuery.ajax({
-        url: 'http://nit.tron.net.ua/api/category/list',
+        url: 'https://nit.tron.net.ua/api/category/list',
         method: 'get',
         dataType: 'json',
         success: function (json) {
