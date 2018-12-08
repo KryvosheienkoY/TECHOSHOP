@@ -253,11 +253,9 @@ $leftBarWidth: 200px;
   }
 
   //for table
-  .table-responsive {
-    overflow-x: auto;
     #productCartGridID {
-      margin: 20px;
-
+      margin:auto;
+      width:95%;
       .totalRow {
         text-align: right;
         font-size: 30px;
@@ -272,7 +270,6 @@ $leftBarWidth: 200px;
         text-transform: uppercase;
       }
     }
-  }
   //for ordering form
   .form-row {
     margin: 20px;
